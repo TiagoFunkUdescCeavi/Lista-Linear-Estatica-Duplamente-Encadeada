@@ -7,17 +7,25 @@ typedef struct Elemento{
     void * dado;
     int posicao_anterior;
     int posicao_proximo;
-};
+} Elemento;
 
 typedef struct Lista{
-    int tamanho_lista;
+    int tamanho_total_lista;
     int tamanho_elemento;
+    int tamanho_atual;
     int * posicao_ocupadas;
     int posicao_primeiro_elemento;
     int posicao_ultimo_elemento;
-    struct Elemento * elementos;
-};
+    Elemento ** elementos;
+} Lista;
 
+int escrever( lLista l, void * elemento, int posicao );
+int procurarVazio( lLista l );
 
+int inserirInicioVazio( lLista l, void * elemento );
+int inserirInicioNaoVazio( lLista l, void * elemento );
+
+int inserirFimVazio( lLista l, void * elemento );
+int inserirFimNaoVazio( lLista l, void * elemento );
 
 #endif
