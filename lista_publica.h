@@ -19,4 +19,6 @@ void * buscarInicio( lLista l );
 void * buscarFim( lLista l );
 void * buscarPos( lLista l, int posicao );
 
+void mostrarLista( lLista l );
+
 #endif

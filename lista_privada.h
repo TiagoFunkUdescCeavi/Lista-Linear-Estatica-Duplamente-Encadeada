@@ -13,7 +13,7 @@ typedef struct Lista{
     int tamanho_total_lista;
     int tamanho_elemento;
     int tamanho_atual;
-    int * posicao_ocupadas;
+    int * posicoes_ocupadas;
     int posicao_primeiro_elemento;
     int posicao_ultimo_elemento;
     Elemento ** elementos;
@@ -27,5 +27,9 @@ int inserirInicioNaoVazio( lLista l, void * elemento );
 
 int inserirFimVazio( lLista l, void * elemento );
 int inserirFimNaoVazio( lLista l, void * elemento );
+
+int inserirNaPosicao( lLista l, void * elemento, int posicao);
+
+void mostrarElemento( Elemento * el, int posicao );
 
 #endif
