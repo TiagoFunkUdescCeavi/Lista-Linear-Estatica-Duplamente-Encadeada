@@ -328,6 +328,34 @@ void testRemoverInicio(lLista ll) {
   mostrarListaInt(ll);
 }
 
+void testString(lLista ls) {
+  char v5[15] = "ultimo valor";
+
+  char v1[15] = "primeiro valor";
+  inserirInicio(ls, &v1);
+
+  inserirInicio(ls, &v1);
+
+  char v2[15] = "valor do meio";
+  inserirPos(ls, &v2, 1);
+
+  int result = inserirFim(ls, &v5);
+  printf("\n result %d", result);
+
+  char* v5buscado = buscarFim(ls);
+  printf("\n v5buscado: %s", v5buscado);
+
+  char* v1buscado = buscarInicio(ls);
+  printf("\n v1buscado: %s", v1buscado);
+
+  char* meio = buscarPos(ls, 2);
+  printf("\n meio: %s", meio);
+
+  reiniciaLista1a5(ls);
+  mostrarListaInt(ls);
+  destruirLista(ls);
+}
+
 int main(int argc, char* argv[]) {
   lLista ll = criarLista(5, sizeof(int));
 
@@ -344,6 +372,11 @@ int main(int argc, char* argv[]) {
   testBuscarPos(ll);
   testBuscarInicio(ll);
   testDestruir(ll);
+
+  lLista ls = criarLista(3, sizeof(char[15]));
+  if (ls == 0) return 1;
+
+  testString(ls);
 
   return 0;
 }
