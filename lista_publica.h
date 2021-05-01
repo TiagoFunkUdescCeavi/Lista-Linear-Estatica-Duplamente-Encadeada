@@ -3,7 +3,7 @@
 
 typedef struct Lista *lLista;
 
-// Cria a lista com o tamanho estático de um tamanho de dados específico
+// criarLista Cria a lista com o tamanho estático de um tamanho de dados específico
 // tamanho -> tamanho estático e máximo da lista
 // tamanho_elemento -> tamanho do dado a ser armazenado ex.: sizeof(int)
 lLista criarLista(int tamanho, int tamanho_elemento);
