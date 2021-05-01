@@ -1,3 +1,5 @@
 lista.o
 main
 .vscode/launch.json
+*.zip
+*.tar.xz
