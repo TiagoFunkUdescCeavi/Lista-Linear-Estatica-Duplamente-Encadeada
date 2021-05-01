@@ -18,7 +18,7 @@
 
 typedef struct Lista *lLista;
 
-// Cria a lista com o tamanho estático de um tamanho de dados específico
+// criarLista Cria a lista com o tamanho estático de um tamanho de dados específico
 // tamanho -> tamanho estático e máximo da lista
 // tamanho_elemento -> tamanho do dado a ser armazenado ex.: sizeof(int)
 lLista criarLista(int tamanho, int tamanho_elemento);
@@ -94,12 +94,49 @@ void mostrarListaInt(lLista l);
 #endif
 ```
 
+### Estrutura de Lista Privada
+```c
+// lista_privada.h
+
+// Elemento
+// *dado -> qualquer dado a ser armazenado no elemento
+// posicao_anterior -> elemento anterior
+// posicao_proximo -> proximo elemento
+typedef struct Elemento{
+    void * dado;
+    int posicao_anterior;
+    int posicao_proximo;
+} Elemento;
+
+// Lista
+// tamanho_total_lista -> todo o tamanho da lista ex.: 5
+// tamanho_elemento -> tamanho do elemento ex.: sizeof(char[15])
+// tamanho_atual -> tamanho atual da lista ex.: 5 se cheia
+// posicoes_ocupadas -> lista de posicoes ocupadas 0 se existe valor na posicao,
+// 1 se não tem elemento na posicao ex.: [1, 0, 0, 0, 1] contem elementos na pos: 0 e 4 e não contem nas posicoes: 1, 2, 3
+// posicao_primeiro_elemento -> posicao na lista do primeiro elemento
+// posicao_ultimo_elemento ->posicao na lista do ultimo elemento
+// elementos -> lista de elementos
+typedef struct Lista{
+    int tamanho_total_lista;
+    int tamanho_elemento;
+    int tamanho_atual;
+    int * posicoes_ocupadas;
+    int posicao_primeiro_elemento;
+    int posicao_ultimo_elemento;
+    Elemento ** elementos;
+} Lista;
+
+...
+
+```
+
 ### Como buildar
 - Para buildar você deve criar ou modificar o `main.c` no root do projeto
 
 - Execute o comando `make`
 __Resultado Esperado__
-![](https://i.imgur.com/8p6Uvs8.png)
+![](https://i.imgur.com/8yiNwTg.png)
 
 - Deve gerar o arquivo executável `main`
 
@@ -111,6 +148,6 @@ __Resultado Esperado__
 ```
 
 __Resultado Esperado__
-- ![](https://i.imgur.com/2dCbRys.png)
+![](https://i.imgur.com/SXIacqo.png)
 
 > Para limpar, realizar o build e executar o main use `make run`
