@@ -151,3 +151,7 @@ __Resultado Esperado__
 ![](https://i.imgur.com/SXIacqo.png)
 
 > Para limpar, realizar o build e executar o main use `make run`
+
+### Como Limpar
+- Limpa todos os `.out` e o `main`
+- Execute o comando `make clean`
