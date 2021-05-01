@@ -30,6 +30,9 @@ int inserirFimNaoVazio( lLista l, void * elemento );
 
 int inserirNaPosicao( lLista l, void * elemento, int posicao);
 
-void mostrarElemento( Elemento * el, int posicao );
+// retorna o mais valor entre dois elementos
+int max(int v1, int v2);
+
+void mostrarElemento( Elemento * el, int posicao , int posicaoOcupada);
 
 #endif
