@@ -30,7 +30,7 @@ lLista criarLista(int tamanho, int tamanho_elemento) {
   return ll;
 }
 
-int destruirLista(Lista* l) {
+int destruirLista(lLista l) {
   if (l == NULL || !l || l->tamanho_total_lista <= 0) {
     return FALSE;
   }
@@ -49,6 +49,9 @@ int destruirLista(Lista* l) {
 }
 
 int reiniciarLista(lLista l) {
+  if (l == NULL || !l || l->tamanho_total_lista <= 0) {
+    return FALSE;
+  }
   l->tamanho_atual = 0;
   for (int i = 0; i < l->tamanho_total_lista; i++) {
     if (l->posicoes_ocupadas[i] == TRUE) {
