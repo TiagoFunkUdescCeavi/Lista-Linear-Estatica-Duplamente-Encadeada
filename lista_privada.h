@@ -30,9 +30,16 @@ int inserirFimNaoVazio( lLista l, void * elemento );
 
 int inserirNaPosicao( lLista l, void * elemento, int posicao);
 
-// retorna o mais valor entre dois elementos
-int max(int v1, int v2);
+// logica remover o primeiro elemento
+void removerPrimeiroElem(lLista l, int pos);
 
+// logica remover o ultimo elemento
+void removerUltimoElem(lLista l, int pos);
+
+// printa todo o elemento
 void mostrarElemento( Elemento * el, int posicao , int posicaoOcupada);
+
+// printa todos os elementos da lista
+void printElementosLista(lLista l);
 
 #endif
