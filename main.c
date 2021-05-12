@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+#define ORDEM 1000
+#define N_INSERE 10*ORDEM
+#define N_REMOVE 3*ORDEM 
 
 #include "lista_publica.h"
 
@@ -356,27 +361,69 @@ void testString(lLista ls) {
   destruirLista(ls);
 }
 
+void inserir10000Elementos( lLista ll ){
+  int r = 0;
+  for( int i = 0; i < N_INSERE; i++ ){
+    r = inserirInicio( ll, &i );
+    printf("Inserindo, i: %d, r: %d\n", i, r );
+  }
+}
+
+void remover3000Elementos( lLista ll ){
+  int * r = malloc( sizeof( int ) );
+  for( int i = 0; i < N_REMOVE; i++ ){
+    r = removerInicio( ll );
+    printf("Removendo, i: %d, r: %d\n", i, *r );
+  }
+}
+
 int main(int argc, char* argv[]) {
-  lLista ll = criarLista(5, sizeof(int));
+  lLista ll = criarLista(N_INSERE, sizeof(int));
 
-  if (ll == 0) return 1;
+  inserir10000Elementos( ll );
+  printf("Contador pulos: %d\n", get_count( ll ) );
 
-  testReiniciar(ll);
-  testInserirPos(ll);
-  testInserirInicioFim(ll);
-  testInserirFim(ll);
-  testInserirInicio(ll);
-  testRemoverPos(ll);
-  testRemoverInicio(ll);
-  testRemoverFim(ll);
-  testBuscarPos(ll);
-  testBuscarInicio(ll);
-  testDestruir(ll);
+  remover3000Elementos( ll );
+  printf("Contador pulos: %d\n", get_count( ll ) );
+  
+  // lLista ll = criarLista(5, sizeof(int));
+  // int a = 0;
+  // if (ll == 0) return 1;
 
-  lLista ls = criarLista(3, sizeof(char[15]));
-  if (ls == 0) return 1;
+  // a = 1;
+  // inserirInicio( ll, &a );
 
-  testString(ls);
+  // a = 2;
+  // inserirInicio( ll, &a );
+
+  // a = 3;
+  // inserirInicio( ll, &a );
+
+  // int * b = removerPos( ll, 2 );
+  // if( b == 0 ){
+  //   printf("nada\n");
+  // }else{
+  //   printf("valor: %d\n", *b);
+  // }
+
+  // mostrarListaInt( ll );
+
+  // testReiniciar(ll);
+  // testInserirPos(ll);
+  // testInserirInicioFim(ll);
+  // testInserirFim(ll);
+  // testInserirInicio(ll);
+  // testRemoverPos(ll);
+  // testRemoverInicio(ll);
+  // testRemoverFim(ll);
+  // testBuscarPos(ll);
+  // testBuscarInicio(ll);
+  // testDestruir(ll);
+
+  // lLista ls = criarLista(3, sizeof(char[15]));
+  // if (ls == 0) return 1;
+
+  // testString(ls);
 
   return 0;
 }

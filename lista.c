@@ -8,6 +8,8 @@
 #define FALSE 1
 #define EMPTY -1
 
+int contador_pulos = 0;
+
 // criarLista Cria a lista com o tamanho estático de um tamanho de dados específico
 // tamanho -> tamanho estático e máximo da lista
 // tamanho_elemento -> tamanho do dado a ser armazenado ex.: sizeof(int)
@@ -137,6 +139,8 @@ int inserirInicioVazio(lLista l, void *elemento) {
   l->elementos[0]->posicao_anterior = EMPTY;
   l->elementos[0]->posicao_proximo = EMPTY;
 
+  contador_pulos++;
+
   return TRUE;
 }
 
@@ -157,6 +161,8 @@ int inserirInicioNaoVazio(lLista l, void *elemento) {
   }
 
   l->posicao_primeiro_elemento = pos;
+
+  contador_pulos++;
 
   return TRUE;
 }
@@ -205,6 +211,9 @@ int inserirFimNaoVazio(lLista l, void *elemento) {
   if (l->posicoes_ocupadas[l->posicao_primeiro_elemento] == TRUE) {
     l->elementos[l->posicao_primeiro_elemento]->posicao_anterior = pos;
   }
+
+  contador_pulos++;
+
   return TRUE;
 }
 
@@ -236,6 +245,8 @@ int inserirNaPosicao(lLista l, void *elemento, int posicao) {
     p = el->posicao_proximo;
     el = l->elementos[el->posicao_proximo];
     cont++;
+
+    contador_pulos++;
   }
   l->elementos[pos]->posicao_anterior = el->posicao_anterior;
   l->elementos[pos]->posicao_proximo = p;
@@ -287,6 +298,8 @@ void removerPrimeiroElem(lLista l, int pos) {
   }
 
   l->posicao_primeiro_elemento = pos;
+
+  contador_pulos++;
 }
 
 // removerUltimoElem logica remover o ultimo elemento
@@ -302,6 +315,8 @@ void removerUltimoElem(lLista l, int pos) {
   }
 
   l->posicao_ultimo_elemento = pos;
+
+  contador_pulos++;
 }
 
 // removerPos remove o elemento da posicao indicada
@@ -354,7 +369,7 @@ void *removerPos(lLista l, int posicao) {
 
   // esta removendo na primeira posicao
   if (l->posicao_primeiro_elemento == posicao) {
-    printf("\n REMOVE PRIMEIRA POSICAO %d\n", posicao);
+    //printf("\n REMOVE PRIMEIRA POSICAO %d\n", posicao);
     removerPrimeiroElem(l, pos_proximo);
     return dado;
   }
@@ -373,6 +388,8 @@ void *removerPos(lLista l, int posicao) {
   if (l->posicoes_ocupadas[pos_anterior] == TRUE) {
     l->elementos[pos_anterior]->posicao_proximo = pos_proximo;
   }
+
+  contador_pulos++;
 
   return dado;
 }
@@ -425,7 +442,7 @@ void *buscarPos(lLista l, int posicao) {
   Elemento *el = l->elementos[posicao];
   void *dado = malloc(l->tamanho_elemento);
   memcpy(dado, el->dado, l->tamanho_elemento);
-
+  contador_pulos++;
   return dado;
 }
 
@@ -517,4 +534,8 @@ void printElementosLista(lLista l) {
   for (int i = 0; i < l->tamanho_total_lista; i++) {
     mostrarElemento(l->elementos[i], i, l->posicoes_ocupadas[i]);
   }
+}
+
+int get_count( lLista ll ){
+  return contador_pulos;
 }
