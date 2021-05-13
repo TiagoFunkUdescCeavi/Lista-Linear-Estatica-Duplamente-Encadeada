@@ -3,6 +3,8 @@
 #include <string.h>
 #include "lista_privado.h"
 
+int contador_pulos = 0;
+
 descritor *criarLista(int tamanho_dados, int *resultado)
 {
     descritor *lista = (descritor *)malloc(sizeof(lista));
@@ -77,9 +79,9 @@ void inserirFim(pLista lista, void *elemento, void *valorInserido, int *resultad
     }
     else
     {
-        if (listaVazia(lista))       
-           
-            inserirInicio(lista, elemento, valorInserido, resultado);       
+        if (listaVazia(lista))
+
+            inserirInicio(lista, elemento, valorInserido, resultado);
         else
         {
             noLista *noUlt = (noLista *)malloc(sizeof(noLista));
@@ -94,7 +96,7 @@ void inserirFim(pLista lista, void *elemento, void *valorInserido, int *resultad
             memcpy(valorInserido, no->dados, lista->tamanho_dados);
             printf("\nElemento inserido no fim da fila!\n");
              lista->qtdeNos++;
-        }       
+        }
         *resultado = SUCESSO;
     }
 }
@@ -111,8 +113,8 @@ void inserirPos(pLista lista, void *elemento, void *valorInserido, int pos, int 
     }
     else
     {
-        if (listaVazia(lista))         // se a lista está vazia insere na lista            
-            inserirInicio(lista, elemento, valorInserido, resultado);           
+        if (listaVazia(lista))         // se a lista está vazia insere na lista
+            inserirInicio(lista, elemento, valorInserido, resultado);
         else
         {
             if (!validarPosicaoInformada(lista, pos))
@@ -131,8 +133,8 @@ void inserirPos(pLista lista, void *elemento, void *valorInserido, int pos, int 
                 else
                 {
                     noLista *noAnt = (noLista *)malloc(sizeof(noLista));
-                    noLista *noAux = (noLista *)malloc(sizeof(noLista));             
-                  
+                    noLista *noAux = (noLista *)malloc(sizeof(noLista));
+
                     noAux = lista->inicio;
                     int cont = 0;
                     while (cont < pos - 1)
@@ -151,7 +153,7 @@ void inserirPos(pLista lista, void *elemento, void *valorInserido, int pos, int 
                     printf("\nElemento inserido na posicao %d\n", pos);
                 }
                 *resultado = SUCESSO;
-            }            
+            }
         }
     }
 }
@@ -220,7 +222,7 @@ void removerFim(pLista lista, void *valorRemovido, int *resultado)
 
 void removerPos(pLista lista, void *valorRemovido, int pos, int *resultado)
 {
- 
+
     if (listaVazia(lista))
     {
         printf("\nLista vazia!\n");
@@ -407,7 +409,7 @@ int validarPosicaoInformada(pLista lista, int pos)
 }
 
 void destruirLista(pLista lista, int *resultado) {
-    
+
     if (!lista)
     {
         *resultado = ERRO;
@@ -415,7 +417,7 @@ void destruirLista(pLista lista, int *resultado) {
     }
     else
     {
-        noLista *no = (noLista *)malloc(sizeof(noLista));        
+        noLista *no = (noLista *)malloc(sizeof(noLista));
         no = lista->inicio;
 
         while (no != NULL)

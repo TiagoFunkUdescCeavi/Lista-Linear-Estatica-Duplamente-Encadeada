@@ -10,7 +10,9 @@
 void inserir10000Elementos( pLista ll ){
   int r = 0;
   for( int i = 0; i < N_INSERE; i++ ){
-    inserirInicio( ll, &i );
+    int result;
+    int inserido;
+    inserirInicio( ll, &i, inserido, &result);
     printf("Inserindo, i: %d, r: %d\n", i, r );
   }
 }
