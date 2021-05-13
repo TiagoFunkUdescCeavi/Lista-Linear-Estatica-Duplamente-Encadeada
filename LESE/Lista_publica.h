@@ -25,4 +25,6 @@ struct Lista * CriarLista (int tamanho_dados, int tamanho_maximo, int * resultad
 struct Lista * ReiniciarLista (struct Lista * lista, int * resultado);
 void DestruirLista (struct Lista * lista, int * resultado);
 
+int get_count();
+
 #endif /* __LISTA_PUBLICA_H__ */
