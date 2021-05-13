@@ -18,3 +18,4 @@ int listaBuscarPos(Lista* lista, int pos, void* dados);
 
 int listaTamanho(Lista* lista);
 int listaVazia(Lista* lista);
+int get_count();
