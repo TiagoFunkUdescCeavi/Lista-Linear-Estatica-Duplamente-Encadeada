@@ -63,12 +63,14 @@ int listaInserirPos(Lista* lista, int pos, int tamanho_dados, void* dados) {
 
   ListaNo* no_anterior = NULL;
   ListaNo* no_atual = lista->inicio;
+  contador_pulos++;
+
   int pos_atual = 0;
   while (pos_atual < pos) {
     pos_atual++;
-    contador_pulos++;
     no_anterior = no_atual;
     no_atual = no_atual->proximo;
+    contador_pulos++;
   }
 
   if (no_anterior == NULL) {
@@ -78,14 +80,16 @@ int listaInserirPos(Lista* lista, int pos, int tamanho_dados, void* dados) {
     no_anterior->proximo = novo_no;
     contador_pulos++;
   }
+
   novo_no->proximo = no_atual;
+  contador_pulos++;
+
   if (no_atual == NULL) {
     lista->fim = novo_no;
     contador_pulos++;
   }
 
   lista->tamanho++;
-
   return SUCESSO;
 }
 
@@ -102,20 +106,22 @@ int listaRemoverPos(Lista* lista, int pos, void* dados) {
 
   ListaNo* no_anterior = NULL;
   ListaNo* no_atual = lista->inicio;
+  contador_pulos++;
+
   int pos_atual = 0;
   while (pos_atual < pos) {
-    contador_pulos++;
     pos_atual++;
     no_anterior = no_atual;
     no_atual = no_atual->proximo;
+    contador_pulos++;
   }
 
   if (no_anterior == NULL) {
-    contador_pulos++;
     lista->inicio = no_atual->proximo;
-  } else {
     contador_pulos++;
+  } else {
     no_anterior->proximo = no_atual->proximo;
+    contador_pulos++;
   }
 
   memcpy(dados, no_atual->dados, no_atual->tamanho_dados);
