@@ -3,3 +3,4 @@ main
 .vscode/launch.json
 *.zip
 *.tar.xz
+__MACOSX
