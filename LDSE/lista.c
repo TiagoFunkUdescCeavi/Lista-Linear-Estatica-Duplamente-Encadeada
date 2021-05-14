@@ -49,12 +49,16 @@ void inserirInicio(pLista lista, void *elemento, void *valorInserido, int *resul
     }
     else
     {
-        if (listaVazia(lista)) // se a lista estiver vazia insere
+        if (listaVazia(lista)) {// se a lista estiver vazia insere
             lista->inicio = no;
+            contador_pulos++;
+        }
         else // se já existir elementos na lista
         {
             no->prox = lista->inicio; //novo nó recebe como próximo o primeiro elemento
+            contador_pulos++;
             lista->inicio = no;       // novo nó ocupa agora a primeira posicao
+            contador_pulos++;
         }
 
         lista->qtdeNos++;
@@ -62,7 +66,7 @@ void inserirInicio(pLista lista, void *elemento, void *valorInserido, int *resul
 
         //retorna no parâmetro valor inserido
         memcpy(valorInserido, no->dados, lista->tamanho_dados);
-        printf("\nElemento inserido no inicio da fila!\n");
+        printf("\nElemento inserido no inicio da fila! %p\n",lista->inicio);
     }
 }
 
@@ -86,16 +90,21 @@ void inserirFim(pLista lista, void *elemento, void *valorInserido, int *resultad
         {
             noLista *noUlt = (noLista *)malloc(sizeof(noLista));
             noUlt = lista->inicio;
+            contador_pulos++;
+
             //busca pelo ultimo elemento
+            contador_pulos++;
             while (noUlt->prox != NULL)
             {
                 noUlt = noUlt->prox;
+                contador_pulos++;
             }
             noUlt->prox = no;
+            contador_pulos++;
 
             memcpy(valorInserido, no->dados, lista->tamanho_dados);
             printf("\nElemento inserido no fim da fila!\n");
-             lista->qtdeNos++;
+            lista->qtdeNos++;
         }
         *resultado = SUCESSO;
     }
@@ -136,17 +145,22 @@ void inserirPos(pLista lista, void *elemento, void *valorInserido, int pos, int 
                     noLista *noAux = (noLista *)malloc(sizeof(noLista));
 
                     noAux = lista->inicio;
+                    contador_pulos++;
                     int cont = 0;
                     while (cont < pos - 1)
                     {
                         noAux = noAux->prox;
+                        contador_pulos++;
                         cont++;
                     }
                     // ao inserir na posicao desejada todos os elementos posteriores são empurrados para trás.
 
                     noAnt = noAux->prox; // pega o valor que estava na atual posicao
+                    contador_pulos++;
                     noAux->prox = no;    // substitui pelo o elemento inserido
+                    contador_pulos++;
                     no->prox = noAnt;    // atualiza o proximo com o elemento que ocupa a atual posicao
+                    contador_pulos++;
 
                     memcpy(valorInserido, no->dados, lista->tamanho_dados);
                     lista->qtdeNos++;
@@ -170,24 +184,33 @@ void removerInicio(pLista lista, void *valorRemovido, int *resultado)
     else
     {
         noAux = lista->inicio;
+        contador_pulos++;
         memcpy(valorRemovido, noAux->dados, lista->tamanho_dados);
 
         // se haver apenas um elemento este é "limpado"
-        if (noAux->prox == NULL)
+        contador_pulos++;
+        if (noAux->prox == NULL){            
             lista->inicio = NULL;
-        else
+            contador_pulos++;            
+        }
+        else{
             lista->inicio = noAux->prox; // se houver mais de um elemento na lista, a segunda posicao passa a ser a primeira e assim consecutivamente.
+            contador_pulos++;
+            contador_pulos++;
+        }
 
+        
         free(noAux);
         lista->qtdeNos--;
         *resultado = SUCESSO;
-        printf("\nElemento do inicio da fila removido!\n");
+        printf("\nElemento do inicio da fila removido! %p\n", noAux);
+        
     }
 }
 
 void removerFim(pLista lista, void *valorRemovido, int *resultado)
 {
-
+   
     if (listaVazia(lista))
     {
         printf("\nLista vazia!\n");
@@ -197,19 +220,27 @@ void removerFim(pLista lista, void *valorRemovido, int *resultado)
     {
         noLista *noAux = (noLista *)malloc(sizeof(noLista));
         noAux = lista->inicio;
+        contador_pulos++;
 
+        contador_pulos++;
         if (noAux->prox == NULL) // se houver apenas um elemento
-        {
+        {            
             lista->inicio = NULL;
+            contador_pulos++;
             lista->qtdeNos = 0;
-        }
+        }        
         else
         {
             noLista *noAnt = (noLista *)malloc(sizeof(noLista));
-            for (; noAux->prox != NULL; noAux = noAux->prox)
+            for (; noAux->prox != NULL; noAux = noAux->prox){
                 noAnt = noAux;
+                contador_pulos++;
+                contador_pulos++;
+            }
             noAnt->prox = NULL; // apaga o ponteiro para o ultimo elemento
+            contador_pulos++;
         }
+        
 
         memcpy(valorRemovido, noAux->dados, lista->tamanho_dados);
         free(noAux); // remove ultimo
@@ -252,13 +283,16 @@ void removerPos(pLista lista, void *valorRemovido, int pos, int *resultado)
                 noAnt = buscarNo(lista, pos - 1);
 
                 noAnt->prox = noAtual->prox; // pega o valor de próximo da atual posicao
-
+                contador_pulos++;
+                contador_pulos++;
+                
                 memcpy(valorRemovido, noAtual->dados, lista->tamanho_dados);
                 free(noAtual); // remove elemento da posicao passada
 
                 lista->qtdeNos--;
                 *resultado = SUCESSO;
                 printf("\nElemento na posicao %d removido! \n", pos);
+                
             }
         }
     }
@@ -268,8 +302,10 @@ int listaVazia(pLista lista)
 {
     if (lista == NULL)
         return 1;
-    if (lista->inicio == NULL)
+    if (lista->inicio == NULL){
+        contador_pulos++;
         return 1;
+    }
     else
         return 0;
 }
@@ -318,8 +354,9 @@ void *buscarFim(pLista lista, int *resultado)
     {
         noLista *noAux = malloc(sizeof(noLista));
         noAux = lista->inicio;
-        while (noAux->prox != NULL) // busca o penultimo elemento da lista
-            noAux = noAux->prox;
+        while (noAux->prox != NULL){ // busca o penultimo elemento da lista
+            noAux = noAux->prox;          
+        }
 
         *resultado = SUCESSO;
         printf("\nBusca no fim da lista realizada!\n");
@@ -348,11 +385,11 @@ void *buscarPos(pLista lista, int pos, int *resultado)
         {
             noLista *noAux = (noLista *)malloc(sizeof(noLista));
 
-            noAux = lista->inicio;
+            noAux = lista->inicio;          
             int cont = 0;
             while (cont < pos)
             {
-                noAux = noAux->prox;
+                noAux = noAux->prox;               
                 cont++;
             }
             *resultado = SUCESSO;
@@ -370,11 +407,14 @@ void *buscarNo(pLista lista, int pos)
     {
         noLista *noAux = (noLista *)malloc(sizeof(noLista));
 
-        noAux = lista->inicio;
+        noAux = lista->inicio;      
+        contador_pulos++;
+
         int cont = 0;
         while (cont < pos)
         {
-            noAux = noAux->prox;
+            noAux = noAux->prox;    
+            contador_pulos++;        
             cont++;
         }
         return noAux;
@@ -432,3 +472,8 @@ void destruirLista(pLista lista, int *resultado) {
         *resultado = SUCESSO;
     }
 }
+
+int get_count( pLista lista ){
+  return contador_pulos;
+}
+

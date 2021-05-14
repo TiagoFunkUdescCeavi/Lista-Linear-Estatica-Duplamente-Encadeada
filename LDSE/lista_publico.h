@@ -22,4 +22,6 @@ void destruirLista(pLista lista, int *resultado);
 
 void imprimir(pLista lista);
 
+int get_count( pLista lista );
+
 

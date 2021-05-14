@@ -2,26 +2,28 @@
 #include <string.h>
 #include <stdio.h>
 #include "lista_publico.h"
+#include<time.h>
 
 #define ORDEM 1000
 #define N_INSERE 10*ORDEM
 #define N_REMOVE 3*ORDEM
 
-void inserir10000Elementos( pLista ll ){
-  int r = 0;
+void inserir10000Elementos( pLista lista ){
   for( int i = 0; i < N_INSERE; i++ ){
+    
     int result;
-    int inserido;
-    inserirInicio( ll, &i, inserido, &result);
-    printf("Inserindo, i: %d, r: %d\n", i, r );
+    int* valorInserido = malloc(sizeof(int*));
+    inserirInicio(lista, &i, valorInserido, &result);
+    printf("Inserindo, i: %d \n", i);
   }
 }
 
-void remover3000Elementos( pLista ll ){
-  int * r = malloc( sizeof( int ) );
+void remover3000Elementos( pLista lista ){
   for( int i = 0; i < N_REMOVE; i++ ){
-    r = removerInicio( ll );
-    printf("Removendo, i: %d, r: %d\n", i, *r );
+    int result;
+    int* valorRemovido = malloc(sizeof(int*));
+    removerInicio(lista, valorRemovido, &result);
+    printf("Removendo, i: %d\n", i);
   }
 }
 
@@ -32,8 +34,15 @@ int main(void)
     //criar lista
     pLista lista = criarLista(sizeof(int *), &resultado);
 
+    //inserir10000Elementos(lista);
+    //printf("Contador pulos: %d\n", get_count(lista) );
 
-    // TESTE INT
+    //remover3000Elementos(lista);
+    //printf("Contador pulos: %d\n", get_count(lista) );
+
+
+
+   
 
     int* valorInserido = malloc(sizeof(int*));
     int* valorRemovido = malloc(sizeof(int*));
@@ -45,14 +54,14 @@ int main(void)
     int valor3 = 3;
     int valor4 = 4;
 
-    // inserirInicio(lista, &valor, valorInserido, &resultado);
-    // printf("Valor inserido: %d \n", *valorInserido);
+    inserirInicio(lista, &valor, valorInserido, &resultado);
+    printf("Valor inserido: %d \n", *valorInserido);
 
-    // inserirInicio(lista, &valor2, valorInserido, &resultado);
-    // printf("Valor inserido: %d \n", *valorInserido);
+    inserirInicio(lista, &valor2, valorInserido, &resultado);
+    printf("Valor inserido: %d \n", *valorInserido);
 
-    // inserirFim(lista, &valor3, valorInserido, &resultado);
-    // printf("Valor inserido: %d \n", *valorInserido);
+    inserirFim(lista, &valor3, valorInserido, &resultado);
+    printf("Valor inserido: %d \n", *valorInserido);
 
     // inserirPos(lista, &valor4, valorInserido, 2, &resultado);
     // printf("Valor inserido: %d \n", *valorInserido);
@@ -70,14 +79,20 @@ int main(void)
 
     // printf("\n------------------------------------\n");
 
-    // removerInicio(lista, valorRemovido, &resultado2);
-    // printf("Valor removido: %d \n", *valorRemovido);
+    /*removerInicio(lista, valorRemovido, &resultado2);
+    printf("Valor removido: %d \n", *valorRemovido);
 
-    // removerFim(lista, valorRemovido, &resultado2);
-    // printf("Valor removido: %d \n", *valorRemovido);
+    removerInicio(lista, valorRemovido, &resultado2);
+    printf("Valor removido: %d \n", *valorRemovido);
 
-    // removerPos(lista, valorRemovido, 1, &resultado2);
-    // printf("Valor removido: %d \n", *valorRemovido);
+    removerInicio(lista, valorRemovido, &resultado2);
+    printf("Valor removido: %d \n", *valorRemovido);
+*/
+    removerFim(lista, valorRemovido, &resultado2);
+    printf("Valor removido: %d \n", *valorRemovido);
+
+    ///removerPos(lista, valorRemovido, 1, &resultado2);
+    //printf("Valor removido: %d \n", *valorRemovido);
 
     // // destruir lista
     // destruirLista(lista, &resultado);
