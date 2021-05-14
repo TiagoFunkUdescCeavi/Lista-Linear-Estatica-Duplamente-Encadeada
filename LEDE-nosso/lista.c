@@ -126,6 +126,7 @@ int procurarVazio(lLista l) {
     if (l->posicoes_ocupadas[i] == FALSE) {
       return i;
     }
+    contador_pulos++;
   }
 
   return EMPTY;
@@ -243,10 +244,9 @@ int inserirNaPosicao(lLista l, void *elemento, int posicao) {
   int p = l->posicao_primeiro_elemento;
   while (cont != posicao) {
     p = el->posicao_proximo;
+    contador_pulos++;
     el = l->elementos[el->posicao_proximo];
     cont++;
-
-    contador_pulos++;
   }
   l->elementos[pos]->posicao_anterior = el->posicao_anterior;
   l->elementos[pos]->posicao_proximo = p;
