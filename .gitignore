@@ -1,6 +1,8 @@
-lista.o
+*.o
+aplicacao
+lista
 main
-.vscode/launch.json
+.vscode/
 *.zip
 *.tar.xz
 __MACOSX
