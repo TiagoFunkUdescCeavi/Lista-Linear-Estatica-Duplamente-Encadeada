@@ -34,15 +34,15 @@ int main(void)
     //criar lista
     pLista lista = criarLista(sizeof(int *), &resultado);
 
-    //inserir10000Elementos(lista);
-    //printf("Contador pulos: %d\n", get_count(lista) );
+    inserir10000Elementos(lista);
+    printf("Contador pulos: %d\n", get_count(lista) );
 
-    //remover3000Elementos(lista);
-    //printf("Contador pulos: %d\n", get_count(lista) );
+    remover3000Elementos(lista);
+    printf("Contador pulos: %d\n", get_count(lista));
 
 
 
-   
+   /*
 
     int* valorInserido = malloc(sizeof(int*));
     int* valorRemovido = malloc(sizeof(int*));
@@ -87,7 +87,7 @@ int main(void)
 
     removerInicio(lista, valorRemovido, &resultado2);
     printf("Valor removido: %d \n", *valorRemovido);
-*/
+
     removerFim(lista, valorRemovido, &resultado2);
     printf("Valor removido: %d \n", *valorRemovido);
 
