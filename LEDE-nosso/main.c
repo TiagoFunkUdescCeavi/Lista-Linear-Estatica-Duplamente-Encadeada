@@ -365,7 +365,7 @@ void inserir10000Elementos( lLista ll ){
   int r = 0;
   for( int i = 0; i < N_INSERE; i++ ){
     r = inserirInicio( ll, &i );
-    printf("Inserindo, i: %d, r: %d\n", i, r );
+    //printf("Inserindo, i: %d, r: %d\n", i, r );
   }
 }
 
@@ -373,7 +373,7 @@ void remover3000Elementos( lLista ll ){
   int * r = malloc( sizeof( int ) );
   for( int i = 0; i < N_REMOVE; i++ ){
     r = removerInicio( ll );
-    printf("Removendo, i: %d, r: %d\n", i, *r );
+    //printf("Removendo, i: %d, r: %d\n", i, *r );
   }
 }
 
